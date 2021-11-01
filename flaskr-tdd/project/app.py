@@ -1,8 +1,7 @@
-import sqlite3
+# import sqlite3
 from pathlib import Path
 
-from flask import Flask, g, render_template, request, session, \
-                  flash, redirect, url_for, abort, jsonify
+from flask import Flask, render_template, request, session, flash, redirect, url_for, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 import os
@@ -37,6 +36,7 @@ def login_required(f):
             return jsonify({'status': 0, 'message': 'Please log in.'}), 401
         return f(*args, **kwargs)
     return decorated_function
+
 @app.route('/')
 def index():
     """Searches the database for entries, then displays them."""
